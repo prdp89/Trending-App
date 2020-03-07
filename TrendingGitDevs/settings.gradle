@@ -1,0 +1,2 @@
+rootProject.name='TrendingGitDevs'
+include ':app'
