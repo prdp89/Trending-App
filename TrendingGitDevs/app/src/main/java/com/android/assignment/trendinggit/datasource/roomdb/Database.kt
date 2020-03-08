@@ -17,5 +17,6 @@ import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoE
 abstract class Database : RoomDatabase() {
 
     abstract fun trendingRepoDao(): TrendingRepoDao
+    abstract fun trendingRepoDevDao(): TrendingRepoDao.TrendingRepoDevDao
     abstract fun trendingDevDao(): TrendingDevDao
 }

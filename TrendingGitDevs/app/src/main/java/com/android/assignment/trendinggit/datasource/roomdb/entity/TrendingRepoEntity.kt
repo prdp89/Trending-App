@@ -17,15 +17,17 @@ data class TrendingRepoEntity(
     var currentPeriodStars: Int,
     var description: String,
     var forks: Int,
-    var language: String,
-    var languageColor: String,
     var name: String,
     var stars: Int,
     var url: String
 ) {
+    var language: String? = null
+
+    var languageColor: String? = null
+
     @Ignore
     @Json(name = "builtBy")
-    var builtByList: List<BuiltBy>? = null
+    var builtBy: MutableList<BuiltBy>? = null
 
     @Entity(
         tableName = "trending_repo_dev"
@@ -36,5 +38,7 @@ data class TrendingRepoEntity(
         var avatar: String,
         var href: String,
         var username: String
-    )
+    ) {
+        var mTrendingRepoId: Int? = null
+    }
 }

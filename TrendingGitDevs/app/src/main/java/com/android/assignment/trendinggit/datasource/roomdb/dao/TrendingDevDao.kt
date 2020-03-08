@@ -1,6 +1,5 @@
 package com.android.assignment.trendinggit.datasource.roomdb.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -10,7 +9,7 @@ import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingDevEn
 @Dao
 interface TrendingDevDao {
     @Query("SELECT * FROM trending_dev")
-    fun loadTrendingDevs(): LiveData<List<TrendingDevEntity>>
+    fun loadTrendingDevs(): List<TrendingDevEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTrendingDevs(trendingDevEntity: TrendingDevEntity)
