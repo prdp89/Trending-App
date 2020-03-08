@@ -1,13 +1,11 @@
 package com.android.assignment.trendinggit.ui.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.*
 import com.android.assignment.trendinggit.datasource.repository.HomeRepository
 import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingDevEntity
 import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoEntity
 import com.android.assignment.trendinggit.utils.Resource
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 class RepositoryViewModel @Inject constructor(private val mHomeRepository: HomeRepository) :
@@ -22,6 +20,10 @@ class RepositoryViewModel @Inject constructor(private val mHomeRepository: HomeR
 
     val devLiveData: LiveData<Resource<List<TrendingDevEntity>>> = mDevData.switchMap {
         mHomeRepository.getAllDev(it)
+    }
+
+    fun refreshLiveData() = liveData(Dispatchers.IO) {
+        emitSource(mHomeRepository.clearAllRepo())
     }
 
     fun triggerDevLiveData(isRefresh: Boolean) {

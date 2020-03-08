@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorSilver"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="@dimen/dimen_2_dp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_repo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/iv_category"
+                android:layout_width="@dimen/dimen_32_dp"
+                android:layout_height="@dimen/dimen_32_dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/dimen_5_dp"
+                android:padding="@dimen/dimen_5_dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_author_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_user_name">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    android:tint="#dddddd"
+                    tools:src="@drawable/place_holder" />
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                style="@style/TextStyle.Title.Roboto.Regular"
+                android:layout_width="100dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="@dimen/dimen_16_dp"
+                android:layout_marginTop="@dimen/dimen_16_dp"
+                android:background="#dddddd"
+                android:maxLines="1"
+                app:layout_constraintBottom_toTopOf="@id/tv_author_name"
+                app:layout_constraintStart_toEndOf="@+id/iv_category"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry"
+                tools:text="user name here.." />
+
+            <TextView
+                android:id="@+id/tv_author_name"
+                style="@style/TextStyle.Title.Roboto.Medium"
+                android:layout_width="200dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="@dimen/dimen_16_dp"
+                android:layout_marginTop="@dimen/dimen_6_dp"
+                android:background="#dddddd"
+                android:maxLines="1"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/iv_category"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
+                tools:ignore="RtlSymmetry"
+                tools:text="author name here.." />
+
+            <View
+                android:id="@+id/container"
+                android:layout_width="330dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dimen_6_dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/tv_author_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_author_name" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/TextStyle.Title.GoogleSans.Regular"
+                android:layout_width="300dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="6dp"
+                android:background="#dddddd"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/container"
+                app:layout_constraintTop_toBottomOf="@+id/container"
+                tools:text="some description here.." />
+
+            <LinearLayout
+                android:id="@+id/ll_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_6_dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/tv_description"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description"
+                app:layout_constraintWidth_percent="0.1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_language"
+                    android:layout_width="@dimen/dimen_10_dp"
+                    android:layout_height="@dimen/dimen_10_dp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="#dddddd" />
+
+                <TextView
+                    android:id="@+id/tv_lang_name"
+                    style="@style/TextStyle.Title.Roboto.Regular"
+                    android:layout_width="80dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="@dimen/dimen_8_dp"
+                    android:background="#dddddd"
+                    tools:text="lang here.." />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_stars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_6_dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@+id/ll_forks"
+                app:layout_constraintStart_toEndOf="@+id/ll_language"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description"
+                app:layout_constraintWidth_percent="0.1">
+
+                <ImageView
+                    android:id="@+id/iv_star"
+                    android:layout_width="@dimen/dimen_15_dp"
+                    android:layout_height="@dimen/dimen_15_dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/star_yellow_16" />
+
+                <TextView
+                    android:id="@+id/tv_star_total"
+                    style="@style/TextStyle.Title.Roboto.Regular"
+                    android:layout_width="80dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="@dimen/dimen_8_dp"
+                    android:background="#dddddd"
+                    tools:text="stars count" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_forks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_6_dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toEndOf="@+id/ll_stars"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description"
+                app:layout_constraintWidth_percent="0.1">
+
+                <ImageView
+                    android:id="@+id/iv_fork"
+                    android:layout_width="@dimen/dimen_15_dp"
+                    android:layout_height="@dimen/dimen_15_dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/fork_black_16"
+                    android:tint="#dddddd" />
+
+                <TextView
+                    android:id="@+id/tv_forks_total"
+                    style="@style/TextStyle.Title.Roboto.Regular"
+                    android:layout_width="80dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="@dimen/dimen_8_dp"
+                    android:background="#dddddd"
+                    tools:text="forks count" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="tv_description,ll_language,ll_stars,ll_forks" />
+
+            <!--      <View
+                      android:id="@+id/view_empty"
+                      android:layout_width="match_parent"
+                      android:layout_height="0dp"
+                      android:layout_marginTop="@dimen/dimen_16_dp"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintStart_toEndOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/ll_forks" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

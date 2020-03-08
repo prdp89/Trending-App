@@ -26,7 +26,7 @@ class HomeRepository @Inject constructor(
             emit(Resource.loading(""))
 
             val repoData = mAppDatabase.trendingRepoDao().loadTrendingRepos()
-            if (repoData.isNotEmpty() && !ApplicationUtils.isNetworkAvailable(mContext) && !isRefresh) {
+            if (repoData.isNotEmpty() && !isRefresh) {
                 mutableLiveData.postValue(
                     Resource.success(
                         "", repoData
@@ -54,8 +54,7 @@ class HomeRepository @Inject constructor(
                 mutableLiveData.postValue(Resource.success("", response))
 
                 emitSource(mutableLiveData)
-            } else
-                emit(Resource.error(""))
+            }
         }
 
     fun getAllDev(isRefresh: Boolean) =
@@ -83,7 +82,12 @@ class HomeRepository @Inject constructor(
                 mutableLiveData.postValue(Resource.success("", response))
 
                 emitSource(mutableLiveData)
-            } else
-                emit(Resource.error(""))
+            }
         }
+
+    fun clearAllRepo() = liveData(Dispatchers.IO)
+    {
+        mAppDatabase.trendingRepoDao().deleteOldRepos()
+        emit(mAppDatabase.trendingRepoDevDao().deleteOldRepoDev())
+    }
 }

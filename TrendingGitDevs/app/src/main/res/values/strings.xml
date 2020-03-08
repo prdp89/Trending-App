@@ -9,4 +9,8 @@
 
     <string name="txt_alien">Please check, if An Alien is blocking your signal.</string>
     <string name="it_s_empty_here">It\'s empty here :(</string>
+    <string name="no_description_found">Description not specified</string>
+    <string name="txt_error_api">Error while loading data. Please try again later.</string>
+    <string name="lang_not_specified">NA</string>
+
 </resources>

@@ -8,7 +8,7 @@ import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoW
 @Dao
 interface TrendingRepoDao {
     @Query("SELECT * FROM trending_repo")
-    fun loadTrendingRepos(): List<TrendingRepoEntity>
+    suspend fun loadTrendingRepos(): List<TrendingRepoEntity>
 
     @Transaction
     @Query("SELECT * FROM trending_repo where id=:id")
@@ -21,7 +21,7 @@ interface TrendingRepoDao {
     fun insertTrendingRepoList(trendingRepoEntityList: List<TrendingRepoEntity>)
 
     @Query("DELETE FROM trending_repo")
-    fun deleteOldRepos()
+    suspend fun deleteOldRepos()
 
     @Dao
     interface TrendingRepoDevDao {
@@ -35,6 +35,6 @@ interface TrendingRepoDao {
         fun insertTrendingRepoDevList(trendingRepoEntityList: List<TrendingRepoEntity.BuiltBy>)
 
         @Query("DELETE FROM trending_repo")
-        fun deleteOldRepoDev()
+        suspend fun deleteOldRepoDev()
     }
 }

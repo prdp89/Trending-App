@@ -9,7 +9,7 @@ import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingDevEn
 @Dao
 interface TrendingDevDao {
     @Query("SELECT * FROM trending_dev")
-    fun loadTrendingDevs(): List<TrendingDevEntity>
+    suspend fun loadTrendingDevs(): List<TrendingDevEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTrendingDevs(trendingDevEntity: TrendingDevEntity)
