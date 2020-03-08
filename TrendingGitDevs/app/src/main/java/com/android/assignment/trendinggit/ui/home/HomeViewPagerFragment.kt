@@ -1,21 +1,28 @@
 package com.android.assignment.trendinggit.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import com.android.assignment.trendinggit.R
 import com.android.assignment.trendinggit.databinding.FragmentHomeViewPagerBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_home_view_pager.*
 
-class HomeViewPagerFragment : Fragment() {
+class HomeViewPagerFragment : DaggerFragment() {
 
     companion object {
         fun newInstance() = HomeViewPagerFragment()
+    }
+
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

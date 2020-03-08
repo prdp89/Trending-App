@@ -1,13 +1,15 @@
 package com.android.assignment.trendinggit
 
-import android.app.Application
 import android.content.Context
 import android.util.Log
+import com.android.assignment.trendinggit.di.DaggerAppComponent
 import com.facebook.stetho.Stetho
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 import java.io.PrintWriter
 import java.io.StringWriter
 
-class TrendingGitDevApplication : Application() {
+class TrendingGitDevApplication : DaggerApplication() {
 
     companion object {
 
@@ -37,5 +39,9 @@ class TrendingGitDevApplication : Application() {
 
             //TODO: log runtime exception to remote API or Save in local directory
         }
+    }
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent.factory().create(this)
     }
 }
