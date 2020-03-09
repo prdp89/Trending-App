@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import com.android.assignment.trendinggit.R
 import com.android.assignment.trendinggit.databinding.FragmentRepositoryBinding
 import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoEntity
+import com.android.assignment.trendinggit.ui.repository.repodetail.RepoDetailFragment
 import com.android.assignment.trendinggit.utils.AppExecutors
 import com.android.assignment.trendinggit.utils.ApplicationUtils
 import com.android.assignment.trendinggit.utils.Status
@@ -69,7 +70,10 @@ class RepositoryFragment : DaggerFragment() {
 
     private fun initRecyclerView() {
         val adapter = RepoListAdapter(mAppExecutors) {
-            //TODO: Show Detail screen
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.addToBackStack(null)
+                ?.replace(R.id.container, RepoDetailFragment.newInstance(it.id!!))
+                ?.commit()
         }
 
         this.mBinding?.rvRepoList?.adapter = adapter
@@ -103,6 +107,8 @@ class RepositoryFragment : DaggerFragment() {
                     mBinding?.rvRepoList?.visibility = View.VISIBLE
                     mBinding?.tvEmpty?.visibility = View.GONE
 
+                    stopShimmer()
+
                     val result = it.data as List<TrendingRepoEntity>
 
                     if (result.isNotEmpty()) {
@@ -111,7 +117,6 @@ class RepositoryFragment : DaggerFragment() {
                     } else {
                         showEmptyLayout()
                     }
-                    stopShimmer()
                 }
                 Status.ERROR -> {
                     showEmptyLayout()

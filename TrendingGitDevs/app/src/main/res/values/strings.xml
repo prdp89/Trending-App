@@ -12,5 +12,7 @@
     <string name="no_description_found">Description not specified</string>
     <string name="txt_error_api">Error while loading data. Please try again later.</string>
     <string name="lang_not_specified">NA</string>
+    <string name="txt_description">Description</string>
+    <string name="txt_contributors">Contributors</string>
 
 </resources>

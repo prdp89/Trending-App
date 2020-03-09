@@ -33,8 +33,8 @@
                 android:layout_centerVertical="true"
                 android:layout_margin="@dimen/dimen_5_dp"
                 android:padding="@dimen/dimen_5_dp"
-                app:cardCornerRadius="16dp"
                 app:cardBackgroundColor="#dddddd"
+                app:cardCornerRadius="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_author_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_user_name">
@@ -93,6 +93,16 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_author_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_author_name"
                 tools:text="some description here.." />
+
+            <View
+                android:id="@+id/view_empty"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dimen_16_dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

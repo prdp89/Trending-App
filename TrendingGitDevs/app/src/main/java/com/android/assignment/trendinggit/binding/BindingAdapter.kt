@@ -19,7 +19,7 @@ fun bindImageUrl(imageView: ImageView, url: String?) {
         val glideUrl = GlideUrl(url)
         Glide.with(imageView.context)
             .load(glideUrl)
-            .apply(RequestOptions().placeholder(R.drawable.place_holder).error(R.drawable.place_holder).circleCrop())
+            .apply(RequestOptions().placeholder(R.drawable.place_holder).error(R.drawable.place_holder))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imageView)
     } else {

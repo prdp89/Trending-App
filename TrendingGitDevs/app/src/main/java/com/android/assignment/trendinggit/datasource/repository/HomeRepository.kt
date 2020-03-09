@@ -39,12 +39,15 @@ class HomeRepository @Inject constructor(
             if (ApplicationUtils.isNetworkAvailable(mContext) && repoData.isEmpty()) {
                 val response = mApiInterface.getAllRepos()
 
+                var repoId = -1
                 response.forEach { repoItem ->
+                    repoItem.id =  ++repoId
+
                     mAppDatabase.trendingRepoDao().insertTrendingRepo(repoItem)
 
                     if (null != repoItem.builtBy && repoItem.builtBy?.isNotEmpty()!!) {
                         repoItem.builtBy?.forEach { builtByItem ->
-                            builtByItem.mTrendingRepoId = repoItem.id
+                            builtByItem.mTrendingRepoId = repoId
                         }
                         mAppDatabase.trendingRepoDevDao()
                             .insertTrendingRepoDevList(repoItem.builtBy!!)
@@ -94,5 +97,9 @@ class HomeRepository @Inject constructor(
     fun clearAllDev() = liveData(Dispatchers.IO)
     {
         emit(mAppDatabase.trendingDevDao().deleteOldDevs())
+    }
+
+    fun getRepoWithDevData(repoId: Int) = liveData(Dispatchers.IO) {
+        emit(mAppDatabase.trendingRepoDao().loadTrendingRepoWithDevData(repoId))
     }
 }

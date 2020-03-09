@@ -9,9 +9,6 @@ import com.squareup.moshi.Json
     tableName = "trending_repo"
 )
 data class TrendingRepoEntity(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int,
-
     var author: String,
     var avatar: String,
     var currentPeriodStars: Int,
@@ -21,6 +18,9 @@ data class TrendingRepoEntity(
     var stars: Int,
     var url: String
 ) {
+    @PrimaryKey
+    var id: Int? = null
+
     var language: String? = null
 
     var languageColor: String? = null

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="entity"
+            type="com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoEntity.BuiltBy" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorSilver"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="@dimen/dimen_2_dp"
+        app:cardUseCompatPadding="true"
+        android:layout_marginEnd="@dimen/dimen_5_dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_repo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/iv_category"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="@dimen/dimen_5_dp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_user_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{entity.avatar}"
+                    tools:src="@drawable/place_holder" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                style="@style/TextStyle.Title.Roboto.Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5_dp"
+                android:layout_marginBottom="@dimen/dimen_5_dp"
+                android:padding="@dimen/dimen_8_dp"
+                android:text="@{entity.username}"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_category"
+                tools:ignore="RtlSymmetry"
+                tools:text="user name here.." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

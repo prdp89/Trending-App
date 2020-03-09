@@ -1,6 +1,8 @@
 package com.android.assignment.trendinggit.ui.developers
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -68,6 +70,9 @@ class DeveloperFragment : DaggerFragment() {
 
     private fun initRecyclerView() {
         val adapter = DevListAdapter(mAppExecutors) {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it.repo.url))
+            if (null != browserIntent.resolveActivity(activity?.packageManager!!))
+                startActivity(browserIntent)
         }
 
         this.mBinding?.rvDevList?.adapter = adapter
@@ -84,6 +89,8 @@ class DeveloperFragment : DaggerFragment() {
                     mBinding?.rvDevList?.visibility = View.VISIBLE
                     mBinding?.tvEmpty?.visibility = View.GONE
 
+                    stopShimmer()
+
                     val result = it.data as List<TrendingDevEntity>
 
                     if (result.isNotEmpty()) {
@@ -92,7 +99,6 @@ class DeveloperFragment : DaggerFragment() {
                     } else {
                         showEmptyLayout()
                     }
-                    stopShimmer()
                 }
                 Status.ERROR -> {
                     showEmptyLayout()

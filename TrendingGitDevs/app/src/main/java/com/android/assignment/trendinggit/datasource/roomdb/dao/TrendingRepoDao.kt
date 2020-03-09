@@ -12,7 +12,7 @@ interface TrendingRepoDao {
 
     @Transaction
     @Query("SELECT * FROM trending_repo where id=:id")
-    fun loadTrendingRepoWithDevData(id: Int): List<TrendingRepoWithDevData>
+    suspend fun loadTrendingRepoWithDevData(id: Int): TrendingRepoWithDevData
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTrendingRepo(trendingRepoEntity: TrendingRepoEntity)
