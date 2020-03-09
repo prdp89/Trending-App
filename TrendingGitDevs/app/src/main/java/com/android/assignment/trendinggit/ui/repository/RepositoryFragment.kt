@@ -72,7 +72,7 @@ class RepositoryFragment : DaggerFragment() {
             //TODO: Show Detail screen
         }
 
-        this.rv_repo_list.adapter = adapter
+        this.mBinding?.rvRepoList?.adapter = adapter
         this.mAdapter = adapter
     }
 
@@ -80,7 +80,7 @@ class RepositoryFragment : DaggerFragment() {
 
         mBinding?.swipeRefreshLayout?.setOnRefreshListener {
             if (ApplicationUtils.isNetworkAvailable(context!!)) {
-                mViewModel.refreshLiveData().observe(viewLifecycleOwner, Observer {
+                mViewModel.refreshRepoLiveData().observe(viewLifecycleOwner, Observer {
                     mViewModel.triggerRepoLiveData(true)
 
                     mBinding?.rvRepoList?.visibility = View.GONE

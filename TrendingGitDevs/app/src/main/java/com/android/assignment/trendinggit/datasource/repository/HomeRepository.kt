@@ -65,7 +65,7 @@ class HomeRepository @Inject constructor(
             emit(Resource.loading(""))
 
             val devData = mAppDatabase.trendingDevDao().loadTrendingDevs()
-            if (devData.isNotEmpty() && !ApplicationUtils.isNetworkAvailable(mContext) && !isRefresh) {
+            if (devData.isNotEmpty() && !isRefresh) {
                 mutableLiveData.postValue(
                     Resource.success(
                         "", devData
@@ -89,5 +89,10 @@ class HomeRepository @Inject constructor(
     {
         mAppDatabase.trendingRepoDao().deleteOldRepos()
         emit(mAppDatabase.trendingRepoDevDao().deleteOldRepoDev())
+    }
+
+    fun clearAllDev() = liveData(Dispatchers.IO)
+    {
+        emit(mAppDatabase.trendingDevDao().deleteOldDevs())
     }
 }
