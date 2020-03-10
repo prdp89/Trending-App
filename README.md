@@ -46,11 +46,10 @@ Please shoot any issue or questions directly on [email](Pardeepsharma.dev@gmail.
 
 **Trending Repository Detail Page**
 ![alt tag](https://github.com/prdp89/Trending-App/blob/master/screenshots/pic_3.jpeg)
-<br/>
 
 <h2 id="creators">Special Thanks :heart:</h2>
 
 - [miguelcatalan](https://github.com/MiguelCatalan/MaterialSearchView) - Miguel Catalan Bañuls
 		
 <h2 id="examples">About Dev :eyes:</h2>
-- [Linkedin](https://www.linkedin.com/in/pardeep-sharma-dev/) - Pardeep Sharma
+- (https://www.linkedin.com/in/pardeep-sharma-dev/) - Pardeep Sharma
