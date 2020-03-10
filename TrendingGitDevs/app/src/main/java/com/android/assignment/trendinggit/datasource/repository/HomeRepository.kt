@@ -41,7 +41,7 @@ class HomeRepository @Inject constructor(
 
                 var repoId = -1
                 response.forEach { repoItem ->
-                    repoItem.id =  ++repoId
+                    repoItem.id = ++repoId
 
                     mAppDatabase.trendingRepoDao().insertTrendingRepo(repoItem)
 
@@ -102,4 +102,58 @@ class HomeRepository @Inject constructor(
     fun getRepoWithDevData(repoId: Int) = liveData(Dispatchers.IO) {
         emit(mAppDatabase.trendingRepoDao().loadTrendingRepoWithDevData(repoId))
     }
+
+    //TODO: We can Implement PagedLIst to Fetch Data From DB
+    /* private val PAGE_SIZE = 10
+     fun getAllRepo(isRefresh: Boolean) =
+         liveData<Resource<PagedList<TrendingRepoEntity>>>(Dispatchers.IO) {
+
+             val mutableLiveData = MutableLiveData<Resource<PagedList<TrendingRepoEntity>>>()
+
+             emit(Resource.loading(""))
+
+             val repoData = mAppDatabase.trendingRepoDao().loadTrendingReposPaged()
+
+             val pagedData = getPagedListBuilder(repoData)
+
+             if (null!= pagedData.value &&pagedData.value?.size!! > 0 && !isRefresh) {
+                 mutableLiveData.postValue(Resource.success("", pagedData.value))
+                 emitSource(mutableLiveData)
+                 return@liveData
+             }
+
+             if (ApplicationUtils.isNetworkAvailable(mContext) && pagedData.value?.size == 0) {
+                 val response = mApiInterface.getAllRepos()
+
+                 var repoId = -1
+                 response.forEach { repoItem ->
+                     repoItem.id = ++repoId
+
+                     mAppDatabase.trendingRepoDao().insertTrendingRepo(repoItem)
+
+                     if (null != repoItem.builtBy && repoItem.builtBy?.isNotEmpty()!!) {
+                         repoItem.builtBy?.forEach { builtByItem ->
+                             builtByItem.mTrendingRepoId = repoId
+                         }
+                         mAppDatabase.trendingRepoDevDao()
+                             .insertTrendingRepoDevList(repoItem.builtBy!!)
+                     }
+                 }
+
+                 val repoNetworkData = mAppDatabase.trendingRepoDao().loadTrendingReposPaged()
+                 val pagedNetworkData = getPagedListBuilder(repoNetworkData)
+
+                 mutableLiveData.postValue(Resource.success("", pagedNetworkData.value))
+                 emitSource(mutableLiveData)
+             }
+         }*/
+
+    /*
+      private fun <T> getPagedListBuilder(repoData: DataSource.Factory<Int, T>): LiveData<PagedList<T>> {
+        val config = PagedList.Config.Builder()
+            .setPageSize(PAGE_SIZE)
+            .build()
+        return LivePagedListBuilder(repoData, config).build()
+    }
+     */
 }

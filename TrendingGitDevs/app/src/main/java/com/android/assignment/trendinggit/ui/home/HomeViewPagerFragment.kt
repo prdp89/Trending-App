@@ -22,7 +22,9 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_home_view_pager.*
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 class HomeViewPagerFragment : DaggerFragment() {
 
@@ -169,7 +171,7 @@ class HomeViewPagerFragment : DaggerFragment() {
     private fun performRepoListSearch(newText: String?) {
         val filteredList =
             mTrendingRepoList.filter {
-                it.name.trim().toLowerCase().contains(newText?.toLowerCase()!!)
+            it.name.trim().toLowerCase(Locale.ROOT).contains(newText?.toLowerCase(Locale.ROOT)!!)
             }
         mRepoListViewModel?.updateRepoList(filteredList)
     }
@@ -197,4 +199,6 @@ class HomeViewPagerFragment : DaggerFragment() {
             else -> null
         }
     }
+
+
 }

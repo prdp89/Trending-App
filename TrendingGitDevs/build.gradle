@@ -24,6 +24,8 @@ buildscript {
     ext.material_version = '1.1.0'
     ext.shimmer_version = '0.5.0'
 
+    ext.paging_version = '2.1.1'
+
     repositories {
         google()
         jcenter()

@@ -1,6 +1,7 @@
 package com.android.assignment.trendinggit.datasource.roomdb.dao
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.*
 import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoEntity
 import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoWithDevData
@@ -9,6 +10,10 @@ import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoW
 interface TrendingRepoDao {
     @Query("SELECT * FROM trending_repo")
     suspend fun loadTrendingRepos(): List<TrendingRepoEntity>
+
+    /*@Query("SELECT * FROM trending_repo")
+    fun loadTrendingReposPaged(): DataSource.Factory<Int, TrendingRepoEntity>
+*/
 
     @Transaction
     @Query("SELECT * FROM trending_repo where id=:id")

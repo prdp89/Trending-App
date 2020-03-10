@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:tabIconTint="@drawable/tab_icon_color_selector"
-                app:tabTextColor="?attr/colorPrimaryDark" />
+                app:tabTextColor="@drawable/tab_text_color_selector" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

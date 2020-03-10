@@ -14,7 +14,6 @@ class RepositoryViewModel @Inject constructor() : ViewModel() {
     lateinit var mHomeRepository: HomeRepository
 
     private val mRepoData = MutableLiveData<Boolean>()
-    private val mDevData = MutableLiveData<Boolean>()
 
     val mFilteredRepoData = MutableLiveData<List<TrendingRepoEntity>>()
 
@@ -22,20 +21,8 @@ class RepositoryViewModel @Inject constructor() : ViewModel() {
         mHomeRepository.getAllRepo(it)
     }
 
-    val devLiveData: LiveData<Resource<List<TrendingDevEntity>>> = mDevData.switchMap {
-        mHomeRepository.getAllDev(it)
-    }
-
     fun refreshRepoLiveData() = liveData(Dispatchers.IO) {
         emitSource(mHomeRepository.clearAllRepo())
-    }
-
-    fun refreshDevLiveData() = liveData(Dispatchers.IO) {
-        emitSource(mHomeRepository.clearAllDev())
-    }
-
-    fun triggerDevLiveData(isRefresh: Boolean) {
-        mDevData.value = isRefresh
     }
 
     fun triggerRepoLiveData(isRefresh: Boolean) {
@@ -45,4 +32,12 @@ class RepositoryViewModel @Inject constructor() : ViewModel() {
     fun updateRepoList(mTrendingRepoList: List<TrendingRepoEntity>) {
         mFilteredRepoData.value = mTrendingRepoList
     }
+
+    //TODO: Pending PagedLIst Implementation
+    //val mFilteredRepoData = MutableLiveData<PagedList<TrendingRepoEntity>>()
+
+    /* val repoLiveData: LiveData<Resource<PagedList<TrendingRepoEntity>>> = mRepoData.switchMap {
+         mHomeRepository.getAllRepo(it)
+     }*/
+
 }
