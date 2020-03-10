@@ -29,6 +29,18 @@ To build this App following third party dependencies have been used:
 		
 		5. Coroutines: Concurrency design pattern used to manage long running operation
 
+<h2 id="more-examples">Screen Shots :fire:</h2>
+
+**Home Page (include Trending Repository and Trendind Devs as on 10 March, 2020)**
+
+![alt tag](https://github.com/prdp89/Trending-App/blob/master/screenshots/pic_1.jpeg)
+<br/><br/>
+
+![alt tag](https://github.com/prdp89/Trending-App/blob/master/screenshots/pic_2.jpeg)
+<br/><br/>
+
+![alt tag](https://github.com/prdp89/Trending-App/blob/master/screenshots/pic_3.jpeg)
+<br/><br/>
 		
 ##### About DEV :
 [Linkedin](https://www.linkedin.com/in/pardeep-sharma-dev/)
