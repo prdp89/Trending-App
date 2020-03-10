@@ -1,6 +1,6 @@
 # Trending App
 
-This Android project is built with MVVM architecture using Androidx and [Android Jetpack components](https://developer.android.com/jetpack) 
+This Android project is built with MVVM architecture using [Androidx] (https://developer.android.com/jetpack/androidx) and [Android Jetpack components](https://developer.android.com/jetpack) 
 
 ## Package-Structure:
 
@@ -29,6 +29,11 @@ To build this App following third party dependencies have been used:
 		
 		5. Coroutines: Concurrency design pattern used to manage long running operation
 
+
+<h2 id="report">Questions & Issues :thinking:</h2>
+
+Please shoot any issue or questions directly on [email](Pardeepsharma.dev@gmail.com) for the fastest answer.
+
 <h2 id="more-examples">Screen Shots :fire:</h2>
 
 **Home Page (include Trending Repository and Trendind Devs as on 10 March, 2020)**
@@ -39,8 +44,13 @@ To build this App following third party dependencies have been used:
 ![alt tag](https://github.com/prdp89/Trending-App/blob/master/screenshots/pic_2.jpeg)
 <br/><br/>
 
+**Trending Repository Detail Page**
 ![alt tag](https://github.com/prdp89/Trending-App/blob/master/screenshots/pic_3.jpeg)
-<br/><br/>
+<br/>
+
+<h2 id="creators">Special Thanks :heart:</h2>
+
+- [miguelcatalan](https://github.com/MiguelCatalan/MaterialSearchView) - Miguel Catalan Bañuls
 		
-##### About DEV :
-[Linkedin](https://www.linkedin.com/in/pardeep-sharma-dev/)
+<h2 id="examples">About Dev :eyes:</h2>
+- [Linkedin](https://www.linkedin.com/in/pardeep-sharma-dev/) - Pardeep Sharma
