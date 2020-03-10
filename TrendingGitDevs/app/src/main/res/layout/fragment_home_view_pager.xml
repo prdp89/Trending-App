@@ -7,8 +7,8 @@
         android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:background="@color/colorSilver">
+        android:background="@color/colorSilver"
+        android:fitsSystemWindows="true">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
@@ -23,30 +23,40 @@
             android:fitsSystemWindows="true"
             android:theme="@style/Theme.Trending.Material.AppBarOverlay">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/toolbar_layout"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|snap"
-                app:toolbarId="@id/toolbar">
+                app:layout_scrollFlags="scroll|snap">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/toolbar_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="parallax">
+                    android:layout_height="wrap_content"
+                    app:toolbarId="@id/toolbar">
 
-                    <TextView
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/Widget.MaterialComponents.Toolbar.Primary"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        android:gravity="center"
-                        android:text="@string/app_name"
-                        android:textAppearance="?attr/textAppearanceHeadline5" />
+                        app:layout_collapseMode="parallax">
 
-                </androidx.appcompat.widget.Toolbar>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            android:gravity="center"
+                            android:text="@string/app_name"
+                            android:textAppearance="?attr/textAppearanceHeadline5" />
 
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+                    </androidx.appcompat.widget.Toolbar>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <com.miguelcatalan.materialsearchview.MaterialSearchView
+                    android:id="@+id/search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"

@@ -8,11 +8,15 @@ import com.android.assignment.trendinggit.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
-class RepositoryViewModel @Inject constructor(private val mHomeRepository: HomeRepository) :
-    ViewModel() {
+class RepositoryViewModel @Inject constructor() : ViewModel() {
+
+    @Inject
+    lateinit var mHomeRepository: HomeRepository
 
     private val mRepoData = MutableLiveData<Boolean>()
     private val mDevData = MutableLiveData<Boolean>()
+
+    val mFilteredRepoData = MutableLiveData<List<TrendingRepoEntity>>()
 
     val repoLiveData: LiveData<Resource<List<TrendingRepoEntity>>> = mRepoData.switchMap {
         mHomeRepository.getAllRepo(it)
@@ -36,5 +40,9 @@ class RepositoryViewModel @Inject constructor(private val mHomeRepository: HomeR
 
     fun triggerRepoLiveData(isRefresh: Boolean) {
         mRepoData.value = isRefresh
+    }
+
+    fun updateRepoList(mTrendingRepoList: List<TrendingRepoEntity>) {
+        mFilteredRepoData.value = mTrendingRepoList
     }
 }

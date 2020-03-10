@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.android.assignment.trendinggit.R
 import com.android.assignment.trendinggit.databinding.FragmentRepositoryBinding
 import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoEntity
@@ -21,8 +23,7 @@ import javax.inject.Inject
 
 class RepositoryFragment : DaggerFragment() {
 
-    @Inject
-    lateinit var mViewModel: RepositoryViewModel
+    var mViewModel: RepositoryViewModel? = null
 
     @Inject
     lateinit var mAppExecutors: AppExecutors
@@ -31,10 +32,8 @@ class RepositoryFragment : DaggerFragment() {
 
     private var mAdapter: RepoListAdapter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //setHasOptionsMenu(true)
-    }
+    @Inject
+    lateinit var mViewModelFactory: ViewModelProvider.Factory
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -59,9 +58,10 @@ class RepositoryFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        //(activity as DaggerAppCompatActivity).setSupportActionBar(toolbar)
+        mViewModel = ViewModelProviders.of(activity!!, mViewModelFactory)
+            .get(RepositoryViewModel::class.java)
 
-        mViewModel.triggerRepoLiveData(false)
+        mViewModel?.triggerRepoLiveData(false)
 
         subscribeLiveData()
         initRecyclerView()
@@ -84,8 +84,8 @@ class RepositoryFragment : DaggerFragment() {
 
         mBinding?.swipeRefreshLayout?.setOnRefreshListener {
             if (ApplicationUtils.isNetworkAvailable(context!!)) {
-                mViewModel.refreshRepoLiveData().observe(viewLifecycleOwner, Observer {
-                    mViewModel.triggerRepoLiveData(true)
+                mViewModel?.refreshRepoLiveData()?.observe(viewLifecycleOwner, Observer {
+                    mViewModel?.triggerRepoLiveData(true)
 
                     mBinding?.rvRepoList?.visibility = View.GONE
                     showShimmer()
@@ -98,7 +98,7 @@ class RepositoryFragment : DaggerFragment() {
     }
 
     private fun subscribeLiveData() {
-        mViewModel.repoLiveData.observe(viewLifecycleOwner, Observer {
+        mViewModel?.repoLiveData?.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.LOADING -> {
                     showShimmer()
@@ -126,6 +126,13 @@ class RepositoryFragment : DaggerFragment() {
                         getString(R.string.txt_error_api)
                     )
                 }
+            }
+        })
+
+        mViewModel?.mFilteredRepoData?.observe(viewLifecycleOwner, Observer {
+            if (it.isNotEmpty()) {
+                mAdapter?.submitList(it)
+                mAdapter?.notifyDataSetChanged()
             }
         })
     }

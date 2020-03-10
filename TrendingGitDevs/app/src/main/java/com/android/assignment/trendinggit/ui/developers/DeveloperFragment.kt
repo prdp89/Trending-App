@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.android.assignment.trendinggit.R
 import com.android.assignment.trendinggit.databinding.FragmentDeveloperBinding
 import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingDevEntity
@@ -22,8 +24,7 @@ import javax.inject.Inject
 
 class DeveloperFragment : DaggerFragment() {
 
-    @Inject
-    lateinit var mViewModel: TrendingDevViewModel
+    private var mViewModel: TrendingDevViewModel? = null
 
     @Inject
     lateinit var mAppExecutors: AppExecutors
@@ -32,10 +33,8 @@ class DeveloperFragment : DaggerFragment() {
 
     private var mAdapter: DevListAdapter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //setHasOptionsMenu(true)
-    }
+    @Inject
+    lateinit var mViewModelFactory: ViewModelProvider.Factory
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -60,9 +59,10 @@ class DeveloperFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        //(activity as DaggerAppCompatActivity).setSupportActionBar(toolbar)
+        mViewModel = ViewModelProviders.of(activity!!, mViewModelFactory)
+            .get(TrendingDevViewModel::class.java)
 
-        mViewModel.triggerDevLiveData(false)
+        mViewModel?.triggerDevLiveData(false)
         subscribeLiveData()
         initRecyclerView()
         observeViewEvents()
@@ -80,7 +80,7 @@ class DeveloperFragment : DaggerFragment() {
     }
 
     private fun subscribeLiveData() {
-        mViewModel.devLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        mViewModel?.devLiveData?.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             when (it.status) {
                 Status.LOADING -> {
                     showShimmer()
@@ -110,14 +110,21 @@ class DeveloperFragment : DaggerFragment() {
                 }
             }
         })
+
+        mViewModel?.mFilteredDevData?.observe(viewLifecycleOwner, Observer {
+            if (it.isNotEmpty()) {
+                mAdapter?.submitList(it)
+                mAdapter?.notifyDataSetChanged()
+            }
+        })
     }
 
     private fun observeViewEvents() {
 
         mBinding?.swipeRefreshLayout?.setOnRefreshListener {
             if (ApplicationUtils.isNetworkAvailable(context!!)) {
-                mViewModel.refreshDevLiveData().observe(viewLifecycleOwner, Observer {
-                    mViewModel.triggerDevLiveData(true)
+                mViewModel?.refreshDevLiveData()?.observe(viewLifecycleOwner, Observer {
+                    mViewModel?.triggerDevLiveData(true)
 
                     mBinding?.rvDevList?.visibility = View.GONE
                     showShimmer()

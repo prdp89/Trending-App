@@ -11,7 +11,8 @@ import dagger.android.support.AndroidSupportInjectionModule
     includes = [AndroidSupportInjectionModule::class
         , ActivityBuildersModule::class
         , NetworkModule::class
-        , DatabaseModule::class]
+        , DatabaseModule::class
+        , ViewModelModule::class]
 )
 abstract class AppModule {
 

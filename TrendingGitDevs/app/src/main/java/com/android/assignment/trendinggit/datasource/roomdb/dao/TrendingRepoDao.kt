@@ -21,7 +21,7 @@ interface TrendingRepoDao {
     fun insertTrendingRepoList(trendingRepoEntityList: List<TrendingRepoEntity>)
 
     @Query("DELETE FROM trending_repo")
-    suspend fun deleteOldRepos()
+    fun deleteOldRepos()
 
     @Dao
     interface TrendingRepoDevDao {
@@ -34,7 +34,7 @@ interface TrendingRepoDao {
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         fun insertTrendingRepoDevList(trendingRepoEntityList: List<TrendingRepoEntity.BuiltBy>)
 
-        @Query("DELETE FROM trending_repo")
+        @Query("DELETE FROM trending_repo_dev")
         suspend fun deleteOldRepoDev()
     }
 }

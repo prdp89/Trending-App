@@ -7,10 +7,14 @@ import com.android.assignment.trendinggit.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
-class TrendingDevViewModel @Inject constructor(private val mHomeRepository: HomeRepository) :
+class TrendingDevViewModel @Inject constructor() :
     ViewModel() {
 
+    @Inject
+    lateinit var mHomeRepository: HomeRepository
+
     private val mDevData = MutableLiveData<Boolean>()
+    val mFilteredDevData = MutableLiveData<List<TrendingDevEntity>>()
 
     val devLiveData: LiveData<Resource<List<TrendingDevEntity>>> = mDevData.switchMap {
         mHomeRepository.getAllDev(it)
@@ -22,5 +26,9 @@ class TrendingDevViewModel @Inject constructor(private val mHomeRepository: Home
 
     fun triggerDevLiveData(isRefresh: Boolean) {
         mDevData.value = isRefresh
+    }
+
+    fun updateDevList(filteredList: List<TrendingDevEntity>) {
+        this.mFilteredDevData.value = filteredList
     }
 }

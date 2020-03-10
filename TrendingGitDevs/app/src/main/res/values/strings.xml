@@ -14,5 +14,6 @@
     <string name="lang_not_specified">NA</string>
     <string name="txt_description">Description</string>
     <string name="txt_contributors">Contributors</string>
+    <string name="txt_search">Search</string>
 
 </resources>
