@@ -52,4 +52,5 @@ Please shoot any issue or questions directly on [email](Pardeepsharma.dev@gmail.
 - [miguelcatalan](https://github.com/MiguelCatalan/MaterialSearchView) - Miguel Catalan Bañuls
 		
 <h2 id="examples">About Dev :eyes:</h2>
+
 - [Linkedin](https://www.linkedin.com/in/pardeep-sharma-dev/) - Pardeep Sharma
