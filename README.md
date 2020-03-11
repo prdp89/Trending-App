@@ -1,6 +1,6 @@
 # Trending App
 
-This Android project is built with MVVM architecture using [Androidx] (https://developer.android.com/jetpack/androidx) and [Android Jetpack components](https://developer.android.com/jetpack) 
+This Android project is built with MVVM architecture using [Androidx](https://developer.android.com/jetpack/androidx) and [Android Jetpack components](https://developer.android.com/jetpack) 
 
 ## Package-Structure:
 
@@ -52,4 +52,4 @@ Please shoot any issue or questions directly on [email](Pardeepsharma.dev@gmail.
 - [miguelcatalan](https://github.com/MiguelCatalan/MaterialSearchView) - Miguel Catalan Bañuls
 		
 <h2 id="examples">About Dev :eyes:</h2>
-- (https://www.linkedin.com/in/pardeep-sharma-dev/) - Pardeep Sharma
+- [Linkedin](https://www.linkedin.com/in/pardeep-sharma-dev/) - Pardeep Sharma
