@@ -10,6 +10,8 @@ import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoE
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.resource.bitmap.DrawableTransformation
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 
 @BindingAdapter("imageUrl")
@@ -19,6 +21,7 @@ fun bindImageUrl(imageView: ImageView, url: String?) {
         val glideUrl = GlideUrl(url)
         Glide.with(imageView.context)
             .load(glideUrl)
+            .transition(DrawableTransitionOptions().crossFade())
             .apply(RequestOptions().placeholder(R.drawable.place_holder).error(R.drawable.place_holder))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imageView)

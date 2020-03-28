@@ -5,4 +5,10 @@
         android:icon="@drawable/ic_search"
         android:title="@string/txt_search"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_bulb"
+        android:icon="@drawable/ic_bulb"
+        android:title="Bulb"
+        app:showAsAction="ifRoom" />
 </menu>

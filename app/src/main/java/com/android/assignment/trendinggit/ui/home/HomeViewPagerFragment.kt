@@ -1,10 +1,12 @@
 package com.android.assignment.trendinggit.ui.home
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -86,6 +88,27 @@ class HomeViewPagerFragment : DaggerFragment() {
         val item = menu.findItem(R.id.action_search)
         if (null != item) {
             mBinding?.searchView?.setMenuItem(item)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_bulb -> {
+                // Get new mode.
+                val mode =
+                    if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+                        Configuration.UI_MODE_NIGHT_NO
+                    ) {
+                        AppCompatDelegate.MODE_NIGHT_YES
+                    } else {
+                        AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY
+                    }
+
+                AppCompatDelegate.setDefaultNightMode(mode)
+                true
+            }
+
+            else -> true
         }
     }
 
@@ -171,7 +194,8 @@ class HomeViewPagerFragment : DaggerFragment() {
     private fun performRepoListSearch(newText: String?) {
         val filteredList =
             mTrendingRepoList.filter {
-            it.name.trim().toLowerCase(Locale.ROOT).contains(newText?.toLowerCase(Locale.ROOT)!!)
+                it.name.trim().toLowerCase(Locale.ROOT)
+                    .contains(newText?.toLowerCase(Locale.ROOT)!!)
             }
         mRepoListViewModel?.updateRepoList(filteredList)
     }

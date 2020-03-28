@@ -1,6 +1,7 @@
 package com.android.assignment.trendinggit.ui.repository
 
 import androidx.lifecycle.*
+import androidx.paging.PagedList
 import com.android.assignment.trendinggit.datasource.repository.HomeRepository
 import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingDevEntity
 import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoEntity
@@ -34,10 +35,9 @@ class RepositoryViewModel @Inject constructor() : ViewModel() {
     }
 
     //TODO: Pending PagedLIst Implementation
-    //val mFilteredRepoData = MutableLiveData<PagedList<TrendingRepoEntity>>()
+    /* val mFilteredRepoData = MutableLiveData<PagedList<TrendingRepoEntity>>()
 
-    /* val repoLiveData: LiveData<Resource<PagedList<TrendingRepoEntity>>> = mRepoData.switchMap {
-         mHomeRepository.getAllRepo(it)
-     }*/
-
+      val repoPagedLiveData: LiveData<Resource<PagedList<TrendingRepoEntity>>> = mRepoData.switchMap {
+         val data = mHomeRepository.getAllRepo(it)
+      }*/
 }

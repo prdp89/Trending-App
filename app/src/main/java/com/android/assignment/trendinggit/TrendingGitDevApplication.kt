@@ -2,7 +2,9 @@ package com.android.assignment.trendinggit
 
 import android.content.Context
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import com.android.assignment.trendinggit.di.DaggerAppComponent
+import com.android.assignment.trendinggit.utils.isNight
 import com.facebook.stetho.Stetho
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
@@ -27,6 +29,14 @@ class TrendingGitDevApplication : DaggerApplication() {
         Stetho.initializeWithDefaults(this)
 
         mContext = applicationContext
+
+        val mode = if (isNight()) {
+            AppCompatDelegate.MODE_NIGHT_YES
+        } else {
+            AppCompatDelegate.MODE_NIGHT_NO
+        }
+
+        AppCompatDelegate.setDefaultNightMode(mode)
 
         Thread.setDefaultUncaughtExceptionHandler { _, exception ->
             val sw = StringWriter()

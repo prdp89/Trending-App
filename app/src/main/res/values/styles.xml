@@ -1,33 +1,13 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.Launcher">
-        <item name="android:windowBackground">@drawable/layer_background</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.Trending.Material.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
     <!-- Base Fonts  -->
     <style name="TextAppearance.Text.GoogleSans.Regular" parent="android:TextAppearance">
         <item name="android:fontFamily">@font/googlesans_regular</item>
     </style>
 
+    <style name="ToolbarTitleTextAppearance" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
 
     <style name="TextAppearance.Text.Roboto.Regular" parent="android:TextAppearance">
         <item name="android:fontFamily">@font/roboto_regular</item>
@@ -35,6 +15,10 @@
 
     <style name="TextAppearance.Text.Roboto.Medium" parent="android:TextAppearance">
         <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents">
+        <item name="android:fontFamily">@font/googlesans_regular</item>
     </style>
 
     <!-- Ends Here    -->

@@ -1,6 +1,7 @@
 package com.android.assignment.trendinggit.ui.repository
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
@@ -12,7 +13,7 @@ import com.android.assignment.trendinggit.vo.databoundadapter.DataBoundListAdapt
 
 class RepoListAdapter(
     appExecutors: AppExecutors,
-    private val callback: ((TrendingRepoEntity) -> Unit)?
+    private val callback: ((TrendingRepoEntity, ItemTrendingRepoBinding) -> Unit)?
 ) :
     DataBoundListAdapter<TrendingRepoEntity,
             ItemTrendingRepoBinding>(mAppExecutors = appExecutors,
@@ -42,7 +43,7 @@ class RepoListAdapter(
         )
 
         binding.root.setOnClickListener {
-            callback?.invoke(binding.entity!!)
+            callback?.invoke(binding.entity!!, binding)
         }
 
         return binding
@@ -54,5 +55,6 @@ class RepoListAdapter(
         position: Int
     ) {
         binding.entity = item
+        binding.executePendingBindings()
     }
 }

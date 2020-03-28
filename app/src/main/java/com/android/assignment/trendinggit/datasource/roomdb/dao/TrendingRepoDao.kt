@@ -11,9 +11,8 @@ interface TrendingRepoDao {
     @Query("SELECT * FROM trending_repo")
     suspend fun loadTrendingRepos(): List<TrendingRepoEntity>
 
-    /*@Query("SELECT * FROM trending_repo")
+    @Query("SELECT * FROM trending_repo")
     fun loadTrendingReposPaged(): DataSource.Factory<Int, TrendingRepoEntity>
-*/
 
     @Transaction
     @Query("SELECT * FROM trending_repo where id=:id")

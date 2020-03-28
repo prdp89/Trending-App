@@ -49,11 +49,13 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_user_name">
 
                 <ImageView
+                    android:id="@+id/detail_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
                     android:contentDescription="@null"
                     android:scaleType="centerCrop"
+                    android:transitionName="@{@string/transition_avatar(entity.id)}"
                     app:imageUrl="@{entity.avatar}"
                     tools:src="@drawable/place_holder" />
             </androidx.cardview.widget.CardView>

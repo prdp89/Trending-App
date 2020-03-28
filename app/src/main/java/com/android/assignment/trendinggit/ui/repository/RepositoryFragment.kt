@@ -1,25 +1,33 @@
 package com.android.assignment.trendinggit.ui.repository
 
+import android.R.attr.fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.transition.Fade
+import androidx.transition.TransitionSet
 import com.android.assignment.trendinggit.R
 import com.android.assignment.trendinggit.databinding.FragmentRepositoryBinding
+import com.android.assignment.trendinggit.databinding.ItemTrendingRepoBinding
 import com.android.assignment.trendinggit.datasource.roomdb.entity.TrendingRepoEntity
 import com.android.assignment.trendinggit.ui.repository.repodetail.RepoDetailFragment
 import com.android.assignment.trendinggit.utils.AppExecutors
 import com.android.assignment.trendinggit.utils.ApplicationUtils
+import com.android.assignment.trendinggit.utils.RepoDetailTransition
 import com.android.assignment.trendinggit.utils.Status
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_repository.*
 import javax.inject.Inject
+
 
 class RepositoryFragment : DaggerFragment() {
 
@@ -69,15 +77,31 @@ class RepositoryFragment : DaggerFragment() {
     }
 
     private fun initRecyclerView() {
-        val adapter = RepoListAdapter(mAppExecutors) {
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.addToBackStack(null)
-                ?.replace(R.id.container, RepoDetailFragment.newInstance(it.id!!))
-                ?.commit()
-        }
+        val adapter =
+            RepoListAdapter(mAppExecutors) { trendingRepoEntity: TrendingRepoEntity, view: ItemTrendingRepoBinding ->
+
+                activity?.supportFragmentManager
+                    ?.beginTransaction()
+                    ?.addSharedElement(view.detailImage, ViewCompat.getTransitionName(view.detailImage)!!)
+                    ?.addToBackStack(null)
+                    ?.replace(R.id.container, getTransition(trendingRepoEntity.id!!))
+                    ?.commit()
+            }
 
         this.mBinding?.rvRepoList?.adapter = adapter
         this.mAdapter = adapter
+    }
+
+    private fun getTransition(id: Int): RepoDetailFragment {
+        val repoDetail = RepoDetailFragment.newInstance(id)
+
+        repoDetail.sharedElementEnterTransition = RepoDetailTransition()
+        repoDetail.sharedElementReturnTransition = RepoDetailTransition()
+
+        repoDetail.enterTransition = Fade()
+        repoDetail.exitTransition = Fade()
+
+        return repoDetail
     }
 
     private fun observeViewEvents() {
@@ -152,5 +176,4 @@ class RepositoryFragment : DaggerFragment() {
         mBinding?.tvEmpty?.visibility = View.VISIBLE
         mBinding?.tvEmpty?.text = getString(R.string.it_s_empty_here)
     }
-
 }
